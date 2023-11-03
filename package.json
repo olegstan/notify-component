@@ -1,0 +1,19 @@
+{
+  "name": "notify-component",
+  "productName": "notify-component",
+  "version": "1.1.1",
+  "description": "notify-component",
+  "main": "src/index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": {
+    "name": "Abramov Oleg",
+    "email": "olegstan1@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^5.3.5"
+  }
+}
