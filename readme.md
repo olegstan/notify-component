@@ -1,34 +1,41 @@
-Usage get data
+#Usage 
+
+###define in router
 
 ```
-Api.get('active-trade', 'index')
-      .where('active_id', 115)
-      .with('currency')
-      .with('to_account', 'to_account.currency')
-      .with('from_account', 'from_account.currency')
-      .orderBy('trade_at', 'DESC')
-      .all((response) => {
-        
-      })
-      .bind(this, 'trades')
-}}     
+import {NotifyContainer} from "notify-component";
+
+return(<ErrorBoundary>
+    <Routes>
+      <Route element={<>
+        <HeaderLanding/>
+        <Layout/>
+      </>}>
+        <Route path="/agreement" element={<MainPage/>}/>
+        <Route path="/policy" element={<MainPage/>}/>
+        <Route path="/" element={<MainPage/>}/>
+        <Route path="/login" element={<Forbidden/>}/>
+        <Route path='*' element={<NotFound/>} />
+      </Route>
+    </Routes>
+    <NotifyContainer/> <----- here
+</ErrorBoundary>);
+}
 ```
-    
-You can use
 
-all or first or paginate
-
-usage POST data
+###Use it anywhere
 
 ```
-Api.post('active', 'store', {
-      user_id: this.props.client.id,
-      type: 2,
-      type_id: item.type_id
-    })
-      .call((response) => {
-        //success
-      }, (response) => {
-        //error
-      });
+NotifyManager.info('Success header', 'Success text')
+NotifyManager.error('Error header', 'Error text')
+
+```
+
+###Uploading file
+
+```
+let id = NotifyManager.id();//it creats unique id
+NotifyManager.once(id, '', 'Upload text', 'waiting', 99999999999)//it waits forever
+
+NotifyManager.delete(id);//it deletes a loader
 ```
