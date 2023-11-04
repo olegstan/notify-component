@@ -43,7 +43,7 @@ class Notify extends Component
       case 'info':
         return <NotifyItem style={style} className={'notification notification-info'}>
           <div>
-            <div>{this.props.text}</div>
+            {/*<div>{this.props.text}</div>*/}
             <CloseInfo className='close' onClick={() => {NotifyManager.delete(this.props.id)}}/>
           </div>
         </NotifyItem>
