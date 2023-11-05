@@ -30,7 +30,7 @@ class Notify extends Component {
         return /*#__PURE__*/React.createElement(NotifyItem, {
           style: style,
           className: 'notification notification-info'
-        }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(CloseInfo, {
+        }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, this.props.text), /*#__PURE__*/React.createElement(CloseInfo, {
           className: "close",
           onClick: () => {
             NotifyManager.delete(this.props.id);

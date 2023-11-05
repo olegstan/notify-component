@@ -1,7 +1,7 @@
 {
   "name": "notify-component",
   "productName": "notify-component",
-  "version": "1.1.4",
+  "version": "1.1.6",
   "description": "notify-component",
   "main": "dist/index.js",
   "keywords": [],
