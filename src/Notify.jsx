@@ -43,14 +43,14 @@ class Notify extends Component
       case 'info':
         return <NotifyItem style={style} className={'notification notification-info'}>
           <div>
-            <div>{this.props.text}</div>
             <CloseInfo className='close' onClick={() => {NotifyManager.delete(this.props.id)}}/>
+            <div className='text'>{this.props.text}</div>
           </div>
         </NotifyItem>
       case 'error':
         return <NotifyItem style={style} onClick={this.props.onClick} className={'notification notification-error'}>
           <div>
-            <div>{this.props.text}</div>
+            <div className='text'>{this.props.text}</div>
             <CloseError className='close' onClick={() => {NotifyManager.delete(this.props.id)}}/>
           </div>
         </NotifyItem>
@@ -65,7 +65,7 @@ class Notify extends Component
               NotifyManager.delete(this.props.id)
               // this.props.handleRemoveJob(this.props.id)
             }}/>
-            <div>{this.props.text}</div>
+            <div className='text'>{this.props.text}</div>
           </div>
         </NotifyItem>
     }

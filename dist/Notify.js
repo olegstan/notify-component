@@ -30,18 +30,22 @@ class Notify extends Component {
         return /*#__PURE__*/React.createElement(NotifyItem, {
           style: style,
           className: 'notification notification-info'
-        }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, this.props.text), /*#__PURE__*/React.createElement(CloseInfo, {
+        }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(CloseInfo, {
           className: "close",
           onClick: () => {
             NotifyManager.delete(this.props.id);
           }
-        })));
+        }), /*#__PURE__*/React.createElement("div", {
+          className: "text"
+        }, this.props.text)));
       case 'error':
         return /*#__PURE__*/React.createElement(NotifyItem, {
           style: style,
           onClick: this.props.onClick,
           className: 'notification notification-error'
-        }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, this.props.text), /*#__PURE__*/React.createElement(CloseError, {
+        }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+          className: "text"
+        }, this.props.text), /*#__PURE__*/React.createElement(CloseError, {
           className: "close",
           onClick: () => {
             NotifyManager.delete(this.props.id);
@@ -69,7 +73,9 @@ class Notify extends Component {
             NotifyManager.delete(this.props.id);
             // this.props.handleRemoveJob(this.props.id)
           }
-        }), /*#__PURE__*/React.createElement("div", null, this.props.text)));
+        }), /*#__PURE__*/React.createElement("div", {
+          className: "text"
+        }, this.props.text)));
     }
     return '';
   }

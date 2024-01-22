@@ -45,5 +45,9 @@ export const NotifyItem = styled.div`
   svg.close:hover{
     opacity: 0.9;
   }
+  
+  .text{
+    width: 200px;
+  }
 `
 
