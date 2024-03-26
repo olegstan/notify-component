@@ -45,6 +45,6 @@ export const NotifyItem = styled.div`
   }
   
   .text{
-    width: 200px;
+    width: 180px;
   }
 `;
