@@ -1,0 +1,24 @@
+{
+  "presets": [
+    "@babel/preset-env",
+    ["@babel/preset-react", {
+      "runtime": "automatic"
+    }],
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    ["@babel/plugin-proposal-decorators", { "version": "2023-05", "decoratorsBeforeExport": true }],
+    "react-html-attrs"
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "@babel/plugin-transform-modules-commonjs",
+        "react-html-attrs",
+        ["@babel/plugin-proposal-decorators", { "legacy": true }],
+        "@babel/plugin-proposal-class-properties"
+      ]
+    }
+  }
+}
