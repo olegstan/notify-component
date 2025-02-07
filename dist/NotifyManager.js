@@ -5,7 +5,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
-var _Notify = _interopRequireDefault(require("./Notify"));
+var _ErrorNotify = require("./types/ErrorNotify");
+var _WaitingNotify = require("./types/WaitingNotify");
+var _InfoNotify = require("./types/InfoNotify");
+var _WarningNotify = require("./types/WarningNotify");
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
@@ -15,70 +18,92 @@ class NotifyManager {
   static id() {
     return '_' + Math.random().toString(36).substr(2, 9);
   }
-  static add(title, text, type, time, onClick, onClose) {
-    if (!NotifyManager.container) {
-      return;
+
+  /**
+   * Создаёт React-элемент уведомления в зависимости от типа.
+   * Параметр title оставляем для совместимости (но в текущей реализации не используется).
+   */
+  static createNotifyElement(id, type, text, time, onClick, onClose) {
+    switch (type) {
+      case 'error':
+        return /*#__PURE__*/(0, _jsxRuntime.jsx)(_ErrorNotify.ErrorNotify, {
+          id: id,
+          text: text,
+          time: time,
+          onClick: onClick,
+          onClose: onClose
+        });
+      case 'waiting':
+        return /*#__PURE__*/(0, _jsxRuntime.jsx)(_WaitingNotify.WaitingNotify, {
+          id: id,
+          text: text,
+          time: time,
+          onClick: onClick,
+          onClose: onClose
+        });
+      case 'warning':
+        return /*#__PURE__*/(0, _jsxRuntime.jsx)(_WarningNotify.WarningNotify, {
+          id: id,
+          text: text,
+          time: time,
+          onClick: onClick,
+          onClose: onClose
+        });
+      case 'info':
+      default:
+        return /*#__PURE__*/(0, _jsxRuntime.jsx)(_InfoNotify.InfoNotify, {
+          id: id,
+          text: text,
+          time: time,
+          onClick: onClick,
+          onClose: onClose
+        });
     }
-    const id = NotifyManager.id();
-    const notify = /*#__PURE__*/(0, _jsxRuntime.jsx)(_Notify.default, {
-      title: title,
-      text: text,
-      type: type,
-      time: time,
-      id: id,
-      onClick: () => {
-        if (typeof onClick === 'function') {
-          onClick();
-        }
-      },
-      onClose: () => {
-        if (typeof onClose === 'function') {
-          onClose();
-        }
-      }
-    });
+  }
 
-    // Добавляем уведомление через метод контейнера
-    NotifyManager.container.addItem(id, notify);
-
-    // По истечении времени уведомление удаляется
+  /**
+   * Устанавливает автоматическое удаление уведомления через заданное время.
+   */
+  static scheduleDeletion(id, time) {
     setTimeout(() => {
       NotifyManager.delete(id);
     }, time);
-    return id;
   }
-  static once(jobTypeId, title, text, type, time, onClick, onClose) {
+
+  /**
+   * Добавляет уведомление с новым сгенерированным id.
+   */
+  static add(title, text, type, time, onClick, onClose) {
     if (!NotifyManager.container) {
+      console.error('NotifyManager: контейнер не привязан');
       return;
     }
+    const id = NotifyManager.id();
+    const notify = NotifyManager.createNotifyElement(id, type, text, time, onClick, onClose);
+    NotifyManager.container.addItem(id, notify);
+    NotifyManager.scheduleDeletion(id, time);
+    return id;
+  }
 
-    // Если уведомление с данным идентификатором уже существует, повторно не добавляем
+  /**
+   * Добавляет уведомление, если уведомление с таким id ещё не существует.
+   */
+  static once(jobTypeId, title, text, type, time, onClick, onClose) {
+    if (!NotifyManager.container) {
+      console.error('NotifyManager: контейнер не привязан');
+      return;
+    }
     if (NotifyManager.container.hasItem && NotifyManager.container.hasItem(jobTypeId)) {
       return;
     }
-    const notify = /*#__PURE__*/(0, _jsxRuntime.jsx)(_Notify.default, {
-      title: title,
-      text: text,
-      type: type,
-      time: time,
-      id: jobTypeId,
-      onClick: () => {
-        if (typeof onClick === 'function') {
-          onClick();
-        }
-      },
-      onClose: () => {
-        if (typeof onClose === 'function') {
-          onClose();
-        }
-      }
-    });
+    const notify = NotifyManager.createNotifyElement(jobTypeId, type, text, time, onClick, onClose);
     NotifyManager.container.addItem(jobTypeId, notify);
-    setTimeout(() => {
-      NotifyManager.delete(jobTypeId);
-    }, time);
+    NotifyManager.scheduleDeletion(jobTypeId, time);
     return jobTypeId;
   }
+
+  // Обёртки для конкретных типов уведомлений
+
   static infoOnce(id, title, text) {
     let time = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 4000;
     let onClick = arguments.length > 4 ? arguments[4] : undefined;
@@ -113,7 +138,6 @@ class NotifyManager {
     if (!NotifyManager.container) {
       return;
     }
-    // Контейнер сам отвечает за обновление уведомления (например, установка флага needRemove) и его последующее удаление
     NotifyManager.container.removeItem(jobTypeId);
   }
   static update(jobTypeId, percent) {

@@ -22,19 +22,31 @@ const NotifyContainer = () => {
     }));
   }, []);
 
-  // Метод для удаления уведомления
+  // Метод для удаления уведомления с анимацией
   const removeItem = (0, _react.useCallback)(id => {
+    // Этап 1: Обновляем уведомление, чтобы запустить анимацию скрытия
     setChildrenMap(prev => {
       const newChildren = {
         ...prev
       };
       if (newChildren[id]) {
-        // Можно, например, сначала задать флаг анимации удаления,
-        // а потом через timeout удалить уведомление окончательно.
-        delete newChildren[id];
+        newChildren[id] = /*#__PURE__*/_react.default.cloneElement(newChildren[id], {
+          needRemove: true
+        });
       }
       return newChildren;
     });
+
+    // Этап 2: После задержки удаляем уведомление окончательно
+    setTimeout(() => {
+      setChildrenMap(prev => {
+        const newChildren = {
+          ...prev
+        };
+        delete newChildren[id];
+        return newChildren;
+      });
+    }, 300); // время задержки должно совпадать с длительностью анимации
   }, []);
 
   // Метод для обновления уведомления (например, процент выполнения)
@@ -52,7 +64,7 @@ const NotifyContainer = () => {
     });
   }, []);
 
-  // Метод для проверки, существует ли уведомление с заданным id
+  // Метод для проверки наличия уведомления
   const hasItem = (0, _react.useCallback)(id => {
     return !!childrenMap[id];
   }, [childrenMap]);

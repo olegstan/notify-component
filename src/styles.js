@@ -13,41 +13,37 @@ const rotate = keyframes`
 export const NotifyItem = styled.div`
   box-shadow: rgb(38 38 38 / 4%) 0px 1px 2px, rgb(38 38 38 / 16%) 0px 4px 8px;
 
-  img.load{
-    height: 25px;
+  img.load,
+  svg.load {
     width: 25px;
+    height: 25px;
     animation: ${rotate} 2s linear infinite;
     margin-right: 14px;
   }
-  img.close{
+
+  /* Объединяем стили для элементов с классом .close */
+  img.close,
+  svg.close {
     position: absolute;
-    height: 25px;
     width: 25px;
-    margin-right: 14px;
+    height: 25px;
     left: 265px;
-  }
-  img.close:hover{
-    opacity: 0.9;
-  }
-  svg.load{
-    height: 25px;
-    width: 25px;
-    animation: ${rotate} 2s linear infinite;
     margin-right: 14px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
   }
-  svg.close{
-    position: absolute;
-    height: 25px;
-    width: 25px;
-    margin-right: 14px;
-    left: 265px;
-  }
-  svg.close:hover{
+
+  img.close:hover,
+  svg.close:hover {
     opacity: 0.9;
   }
   
   .text{
     width: 180px;
+  }
+  
+  &:hover{
+   opacity: 0.7; 
   }
 `
 
