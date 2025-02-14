@@ -128,6 +128,12 @@ class NotifyManager {
     let onClose = arguments.length > 4 ? arguments[4] : undefined;
     return NotifyManager.add(title, text, 'warning', time, onClick, onClose);
   }
+  static loading(title, text) {
+    let time = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 999999999;
+    let onClick = arguments.length > 3 ? arguments[3] : undefined;
+    let onClose = arguments.length > 4 ? arguments[4] : undefined;
+    return NotifyManager.add(title, text, 'waiting', time, onClick, onClose);
+  }
   static error(title, text) {
     let time = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 4000;
     let onClick = arguments.length > 3 ? arguments[3] : undefined;

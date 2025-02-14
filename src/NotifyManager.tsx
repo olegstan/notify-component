@@ -1,5 +1,4 @@
 import React from 'react';
-import Notify from './Notify';
 import { ErrorNotify } from "./types/ErrorNotify";
 import { WaitingNotify } from "./types/WaitingNotify";
 import { InfoNotify } from "./types/InfoNotify";
@@ -177,6 +176,16 @@ export default class NotifyManager {
       onClose?: () => void
   ) {
     return NotifyManager.add(title, text, 'warning', time, onClick, onClose);
+  }
+
+  static loading(
+      title: string,
+      text: string,
+      time: number = 999999999,
+      onClick?: () => void,
+      onClose?: () => void
+  ) {
+    return NotifyManager.add(title, text, 'waiting', time, onClick, onClose);
   }
 
   static error(

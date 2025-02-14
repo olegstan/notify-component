@@ -1,3 +1,5 @@
+import {useEffect, useState} from 'react';
+
 const useRendered = (delay: number = 300): boolean => {
     const [rendered, setRendered] = useState(false);
     useEffect(() => {

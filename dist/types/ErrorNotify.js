@@ -22,7 +22,13 @@ const ErrorNotify = _ref => {
   const rendered = (0, _useRendered.default)();
   const style = (0, _getNotifyStyle.default)(rendered, needRemove);
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.NotifyItem, {
-    style: style,
+    style: {
+      ...style,
+      ...{
+        backgroundColor: '#EF5E70',
+        color: '#fff'
+      }
+    },
     onClick: onClick,
     children: /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
       children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("div", {

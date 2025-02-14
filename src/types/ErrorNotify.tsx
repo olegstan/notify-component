@@ -16,7 +16,13 @@ export const ErrorNotify: React.FC<BaseNotifyProps> = ({
     const style = getNotifyStyle(rendered, needRemove);
 
     return (
-        <NotifyItem style={style} onClick={onClick}>
+        <NotifyItem style={{
+            ...style,
+            ...{
+                backgroundColor: '#EF5E70',
+                color: '#fff'
+            }
+        }} onClick={onClick}>
             <div>
                 <div className="text">{text}</div>
                 <CloseError className="close" onClick={() => NotifyManager.delete(id)} />
