@@ -6,6 +6,7 @@ import getNotifyStyle from "./getNotifyStyle";
 import {NotifyItem} from "./../styles";
 import {ReactComponent as CloseInfo} from '../images/ic_close_info.svg';
 import loader from '../images/loader.svg';
+import {Preload, Content} from './styles';
 
 interface WaitingNotifyProps extends BaseNotifyProps {
     percent?: number;
@@ -23,14 +24,14 @@ export const WaitingNotify: React.FC<WaitingNotifyProps> = ({
 
     return (
         <NotifyItem style={style} onClick={onClick}>
-            <div className="preload">
+            <Preload>
                 <div style={{ width: percent && percent > 0 ? `${percent}%` : '0%' }} />
-            </div>
-            <div>
+            </Preload>
+            <Content>
                 <img className="load" src={loader} alt="" />
                 <CloseInfo className="close" onClick={() => NotifyManager.delete(id)} />
                 <div className="text">{text}</div>
-            </div>
+            </Content>
         </NotifyItem>
     );
 };

@@ -5,6 +5,7 @@ import useRendered from "./useRendered";
 import getNotifyStyle from "./getNotifyStyle";
 import {NotifyItem} from "./../styles";
 import {ReactComponent as CloseError} from '../images/ic_close_error.svg';
+import {Preload, Content} from './styles';
 
 export const ErrorNotify: React.FC<BaseNotifyProps> = ({
                                                            id,
@@ -23,10 +24,10 @@ export const ErrorNotify: React.FC<BaseNotifyProps> = ({
                 color: '#fff'
             }
         }} onClick={onClick}>
-            <div>
+            <Content>
                 <div className="text">{text}</div>
                 <CloseError className="close" onClick={() => NotifyManager.delete(id)} />
-            </div>
+            </Content>
         </NotifyItem>
     );
 };

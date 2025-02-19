@@ -5,6 +5,7 @@ import useRendered from "./useRendered";
 import getNotifyStyle from "./getNotifyStyle";
 import {NotifyItem} from "./../styles";
 import {ReactComponent as CloseInfo} from '../images/ic_close_info.svg';
+import {Preload, Content} from './styles';
 
 export const WarningNotify: React.FC<BaseNotifyProps> = ({
                                                              id,
@@ -20,13 +21,13 @@ export const WarningNotify: React.FC<BaseNotifyProps> = ({
             style={style}
             onClick={onClick}
         >
-            <div>
+            <Content>
                 <CloseInfo
                     className="close"
                     onClick={() => NotifyManager.delete(id)}
                 />
                 <div className="text">{text}</div>
-            </div>
+            </Content>
         </NotifyItem>
     );
 };
