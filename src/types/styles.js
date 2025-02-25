@@ -1,4 +1,4 @@
-import styled, {keyframes} from 'styled-components'
+import styled from 'styled-components'
 
 export const Preload = styled.div`
   border-top-right-radius: 6px;

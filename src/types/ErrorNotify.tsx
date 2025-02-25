@@ -4,8 +4,9 @@ import BaseNotifyProps from "./BaseNotifyProps";
 import useRendered from "./useRendered";
 import getNotifyStyle from "./getNotifyStyle";
 import {NotifyItem} from "./../styles";
+// @ts-ignore
 import {ReactComponent as CloseError} from '../images/ic_close_error.svg';
-import {Preload, Content} from './styles';
+import {Content} from './styles';
 
 export const ErrorNotify: React.FC<BaseNotifyProps> = ({
                                                            id,

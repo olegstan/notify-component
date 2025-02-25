@@ -1,7 +1,7 @@
 {
   "name": "notify-component",
   "productName": "notify-component",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "notify-component",
   "main": "dist/index.js",
   "keywords": [],
@@ -14,14 +14,14 @@
     "build": "babel src -d dist --extensions \".ts,.tsx,.js,.jsx\" && copyfiles -u 1 src/images/* dist/"
   },
   "license": "MIT",
-
   "dependencies": {
   },
   "peerDependencies": {
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.0.0",
     "copyfiles": "^2.4.1",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "react": "^18.3.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.18.6",

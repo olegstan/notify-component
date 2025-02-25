@@ -5,7 +5,7 @@ import useRendered from "./useRendered";
 import getNotifyStyle from "./getNotifyStyle";
 import {NotifyItem} from "./../styles";
 import {ReactComponent as CloseInfo} from '../images/ic_close_info.svg';
-import {Preload, Content} from './styles';
+import {Content} from './styles';
 
 export const WarningNotify: React.FC<BaseNotifyProps> = ({
                                                              id,

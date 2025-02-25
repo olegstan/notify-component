@@ -6,7 +6,7 @@ import getNotifyStyle from "./getNotifyStyle";
 import {NotifyItem} from "./../styles";
 import {ReactComponent as CloseInfo} from '../images/ic_close_info.svg';
 import loader from '../images/loader.svg';
-import {Preload, Content} from './styles';
+import {Content, Preload} from './styles';
 
 interface WaitingNotifyProps extends BaseNotifyProps {
     percent?: number;

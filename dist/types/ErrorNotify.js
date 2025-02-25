@@ -13,6 +13,8 @@ var _ic_close_error = require("../images/ic_close_error.svg");
 var _styles2 = require("./styles");
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+// @ts-ignore
+
 const ErrorNotify = _ref => {
   let {
     id,
