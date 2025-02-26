@@ -4,15 +4,17 @@ import BaseNotifyProps from "./BaseNotifyProps";
 import useRendered from "./useRendered";
 import getNotifyStyle from "./getNotifyStyle";
 import {NotifyItem} from "./../styles";
+// @ts-ignore
 import {ReactComponent as CloseInfo} from '../images/ic_close_info.svg';
+// @ts-ignore
 import loader from '../images/loader.svg';
 import {Content, Preload} from './styles';
 
-interface WaitingNotifyProps extends BaseNotifyProps {
+interface LoadingNotifyProps extends BaseNotifyProps {
     percent?: number;
 }
 
-export const WaitingNotify: React.FC<WaitingNotifyProps> = ({
+export const LoadingNotify: React.FC<LoadingNotifyProps> = ({
                                                                 id,
                                                                 text,
                                                                 onClick,

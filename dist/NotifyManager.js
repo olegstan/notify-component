@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
 var _ErrorNotify = require("./types/ErrorNotify");
-var _WaitingNotify = require("./types/WaitingNotify");
+var _LoadingNotify = require("./types/LoadingNotify");
 var _InfoNotify = require("./types/InfoNotify");
 var _WarningNotify = require("./types/WarningNotify");
 var _jsxRuntime = require("react/jsx-runtime");
@@ -16,7 +16,7 @@ function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" 
 function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 const NotifyComponents = {
   error: _ErrorNotify.ErrorNotify,
-  waiting: _WaitingNotify.WaitingNotify,
+  loading: _LoadingNotify.LoadingNotify,
   info: _InfoNotify.InfoNotify,
   warning: _WarningNotify.WarningNotify
 };
@@ -102,13 +102,13 @@ class NotifyManager {
 exports.default = NotifyManager;
 _defineProperty(NotifyManager, "container", null);
 ['info', 'error', 'warning', 'loading'].forEach(type => {
-  NotifyManager.prototype["".concat(type, "Once")] = function (id, title, text) {
+  NotifyManager["".concat(type, "Once")] = function (id, title, text) {
     let time = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 4000;
     let onClick = arguments.length > 4 ? arguments[4] : undefined;
     let onClose = arguments.length > 5 ? arguments[5] : undefined;
     return NotifyManager.once(id, title, text, type, time, onClick, onClose);
   };
-  NotifyManager.prototype[type] = function (title, text) {
+  NotifyManager[type] = function (title, text) {
     let time = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : type === 'loading' ? 999999999 : 4000;
     let onClick = arguments.length > 3 ? arguments[3] : undefined;
     let onClose = arguments.length > 4 ? arguments[4] : undefined;

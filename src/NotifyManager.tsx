@@ -1,10 +1,10 @@
 import React from 'react';
 import { ErrorNotify } from "./types/ErrorNotify";
-import { WaitingNotify } from "./types/WaitingNotify";
+import { LoadingNotify } from "./types/LoadingNotify";
 import { InfoNotify } from "./types/InfoNotify";
 import { WarningNotify } from "./types/WarningNotify";
 
-type ContainerInterface = {
+export type ContainerInterface = {
   addItem: (id: string, notify: React.ReactElement) => void;
   removeItem: (id: string) => void;
   updateItem: (id: string, percent: number) => void;
@@ -13,7 +13,7 @@ type ContainerInterface = {
 
 const NotifyComponents: Record<string, React.ComponentType<any>> = {
   error: ErrorNotify,
-  waiting: WaitingNotify,
+  loading: LoadingNotify,
   info: InfoNotify,
   warning: WarningNotify,
 };
@@ -143,24 +143,24 @@ export default class NotifyManager {
 
 // Динамическое создание методов для типов уведомлений
 ['info', 'error', 'warning', 'loading'].forEach((type) => {
-  NotifyManager.prototype[`${type}Once`] = function (
+  NotifyManager[`${type}Once`] = (
       id: string,
       title: string,
       text: string,
       time: number = 4000,
       onClick?: () => void,
       onClose?: () => void
-  ) {
+  ): string | undefined => {
     return NotifyManager.once(id, title, text, type, time, onClick, onClose);
   };
 
-  NotifyManager.prototype[type] = function (
+  NotifyManager[type] = (
       title: string,
       text: string,
       time: number = type === 'loading' ? 999999999 : 4000,
       onClick?: () => void,
       onClose?: () => void
-  ) {
+  ): string | undefined => {
     return NotifyManager.add(title, text, type, time, onClick, onClose);
   };
 });

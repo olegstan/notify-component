@@ -1,5 +1,5 @@
-import React, {Fragment, useCallback, useEffect, useState} from 'react';
-import NotifyManager from './NotifyManager';
+import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import NotifyManager, {ContainerInterface} from './NotifyManager';
 import Portal from './Portal';
 
 interface NotifyContainerProps {
@@ -14,12 +14,12 @@ const NotifyContainer: React.FC<NotifyContainerProps> = () => {
   const [childrenMap, setChildrenMap] = useState<ChildrenMap>({});
 
   // Метод для добавления уведомления
-  const addItem = useCallback((id: string, notify: React.ReactElement) => {
+  const addItem: ContainerInterface['addItem'] = useCallback((id, notify) => {
     setChildrenMap((prev) => ({ ...prev, [id]: notify }));
   }, []);
 
   // Метод для удаления уведомления с анимацией
-  const removeItem = useCallback((id: string) => {
+  const removeItem: ContainerInterface['removeItem'] = useCallback((id) => {
     // Этап 1: Обновляем уведомление, чтобы запустить анимацию скрытия
     setChildrenMap((prev) => {
       const newChildren = { ...prev };
@@ -40,7 +40,7 @@ const NotifyContainer: React.FC<NotifyContainerProps> = () => {
   }, []);
 
   // Метод для обновления уведомления (например, процент выполнения)
-  const updateItem = useCallback((id: string, percent: number) => {
+  const updateItem: ContainerInterface['updateItem'] = useCallback((id, percent) => {
     setChildrenMap((prev) => {
       if (prev[id]) {
         return { ...prev, [id]: React.cloneElement(prev[id], { percent }) };
@@ -50,8 +50,8 @@ const NotifyContainer: React.FC<NotifyContainerProps> = () => {
   }, []);
 
   // Метод для проверки наличия уведомления
-  const hasItem = useCallback(
-      (id: string): boolean => {
+  const hasItem: ContainerInterface['hasItem'] = useCallback(
+      (id): boolean => {
         return !!childrenMap[id];
       },
       [childrenMap]
