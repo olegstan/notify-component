@@ -1,7 +1,7 @@
 import React from 'react';
 import NotifyManager from "../NotifyManager";
 import BaseNotifyProps from "./BaseNotifyProps";
-import useRendered from "./useRendered";
+import useRendered from "./hooks/useRendered";
 import getNotifyStyle from "./getNotifyStyle";
 import {NotifyItem} from "./../styles";
 // @ts-ignore

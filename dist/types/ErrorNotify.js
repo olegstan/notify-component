@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.ErrorNotify = void 0;
 var _react = _interopRequireDefault(require("react"));
 var _NotifyManager = _interopRequireDefault(require("../NotifyManager"));
-var _useRendered = _interopRequireDefault(require("./useRendered"));
+var _useRendered = _interopRequireDefault(require("./hooks/useRendered"));
 var _getNotifyStyle = _interopRequireDefault(require("./getNotifyStyle"));
 var _styles = require("./../styles");
 var _ic_close_error = require("../images/ic_close_error.svg");

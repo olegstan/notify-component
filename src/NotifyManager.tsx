@@ -18,6 +18,9 @@ const NotifyComponents: Record<string, React.ComponentType<any>> = {
   warning: WarningNotify,
 };
 
+/**
+ *
+ */
 export default class NotifyManager {
   static container: ContainerInterface | null = null;
 
@@ -141,13 +144,25 @@ export default class NotifyManager {
   }
 }
 
+/**
+ * @typedef {Object} NotifyManager
+ * @property {(title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} info - Метод для добавления информационного уведомления.
+ * @property {(title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} error - Метод для добавления уведомления об ошибке.
+ * @property {(title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} warning - Метод для добавления предупреждающего уведомления.
+ * @property {(title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} loading - Метод для добавления уведомления загрузки.
+ * @property {(id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} infoOnce - Метод для добавления однократного информационного уведомления.
+ * @property {(id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} errorOnce - Метод для добавления однократного уведомления об ошибке.
+ * @property {(id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} warningOnce - Метод для добавления однократного предупреждающего уведомления.
+ * @property {(id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} loadingOnce - Метод для добавления однократного уведомления загрузки.
+ */
+
 // Динамическое создание методов для типов уведомлений
 ['info', 'error', 'warning', 'loading'].forEach((type) => {
   NotifyManager[`${type}Once`] = (
       id: string,
       title: string,
       text: string,
-      time: number = 4000,
+      time: number = type === 'loading' ? 999999999 : 4000,
       onClick?: () => void,
       onClose?: () => void
   ): string | undefined => {
