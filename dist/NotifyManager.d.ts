@@ -5,10 +5,22 @@ export type ContainerInterface = {
     updateItem: (id: string, percent: number) => void;
     hasItem?: (id: string) => boolean;
 };
+interface NotifyManagerInterface {
+    info: (title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
+    error: (title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
+    warning: (title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
+    loading: (title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
+    infoOnce: (id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
+    errorOnce: (id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
+    warningOnce: (id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
+    loadingOnce: (id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
+}
+interface NotifyManager extends NotifyManagerInterface {
+}
 /**
  *
  */
-export default class NotifyManager {
+declare class NotifyManager {
     static container: ContainerInterface | null;
     static id(): string;
     private static normalizeText;
@@ -21,4 +33,5 @@ export default class NotifyManager {
     static update(jobTypeId: string, percent: number): void;
     static bind(container: ContainerInterface): void;
 }
+export default NotifyManager;
 //# sourceMappingURL=NotifyManager.d.ts.map

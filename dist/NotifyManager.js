@@ -21,6 +21,8 @@ const NotifyComponents = {
   warning: _WarningNotify.WarningNotify
 };
 
+// Объявление слияния интерфейсов: расширяем класс NotifyManager
+
 /**
  *
  */
@@ -115,7 +117,6 @@ class NotifyManager {
  */
 
 // Динамическое создание методов для типов уведомлений
-exports.default = NotifyManager;
 _defineProperty(NotifyManager, "container", null);
 ['info', 'error', 'warning', 'loading'].forEach(type => {
   //@ts-ignore
@@ -134,3 +135,4 @@ _defineProperty(NotifyManager, "container", null);
     return NotifyManager.add(title, text, type, time, onClick, onClose);
   };
 });
+var _default = exports.default = NotifyManager;

@@ -11,6 +11,18 @@ export type ContainerInterface = {
   hasItem?: (id: string) => boolean;
 };
 
+interface NotifyManagerInterface {
+  info: (title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
+  error: (title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
+  warning: (title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
+  loading: (title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
+
+  infoOnce: (id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
+  errorOnce: (id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
+  warningOnce: (id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
+  loadingOnce: (id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
+}
+
 const NotifyComponents: Record<string, React.ComponentType<any>> = {
   error: ErrorNotify,
   loading: LoadingNotify,
@@ -18,10 +30,14 @@ const NotifyComponents: Record<string, React.ComponentType<any>> = {
   warning: WarningNotify,
 };
 
+
+// Объявление слияния интерфейсов: расширяем класс NotifyManager
+interface NotifyManager extends NotifyManagerInterface {}
+
 /**
  *
  */
-export default class NotifyManager {
+class NotifyManager {
   static container: ContainerInterface | null = null;
 
   static id(): string {
@@ -181,3 +197,5 @@ export default class NotifyManager {
     return NotifyManager.add(title, text, type, time, onClick, onClose);
   };
 });
+
+export default NotifyManager
