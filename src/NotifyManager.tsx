@@ -158,6 +158,7 @@ export default class NotifyManager {
 
 // Динамическое создание методов для типов уведомлений
 ['info', 'error', 'warning', 'loading'].forEach((type) => {
+  //@ts-ignore
   NotifyManager[`${type}Once`] = (
       id: string,
       title: string,
@@ -169,6 +170,7 @@ export default class NotifyManager {
     return NotifyManager.once(id, title, text, type, time, onClick, onClose);
   };
 
+  //@ts-ignore
   NotifyManager[type] = (
       title: string,
       text: string,

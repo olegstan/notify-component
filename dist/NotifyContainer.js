@@ -30,6 +30,7 @@ const NotifyContainer = () => {
         ...prev
       };
       if (newChildren[id]) {
+        //@ts-ignore
         newChildren[id] = /*#__PURE__*/_react.default.cloneElement(newChildren[id], {
           needRemove: true
         });
@@ -53,6 +54,7 @@ const NotifyContainer = () => {
   const updateItem = (0, _react.useCallback)((id, percent) => {
     setChildrenMap(prev => {
       if (prev[id]) {
+        //@ts-ignore
         return {
           ...prev,
           [id]: /*#__PURE__*/_react.default.cloneElement(prev[id], {
@@ -78,6 +80,8 @@ const NotifyContainer = () => {
       hasItem
     });
   }, [addItem, removeItem, updateItem, hasItem]);
+
+  //@ts-ignore
   const notifies = Object.values(childrenMap);
   if (notifies.length === 0) {
     return null;

@@ -1,0 +1,1 @@
+{"version":3,"file":"LoadingNotify.d.ts","sourceRoot":"","sources":["../../src/types/LoadingNotify.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,OAAO,CAAC;AAE1B,OAAO,eAAe,MAAM,mBAAmB,CAAC;AAUhD,UAAU,kBAAmB,SAAQ,eAAe;IAChD,OAAO,CAAC,EAAE,MAAM,CAAC;CACpB;AAED,eAAO,MAAM,aAAa,EAAE,KAAK,CAAC,EAAE,CAAC,kBAAkB,CAsBtD,CAAC"}

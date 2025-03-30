@@ -4,14 +4,15 @@ import BaseNotifyProps from "./BaseNotifyProps";
 import useRendered from "./hooks/useRendered";
 import getNotifyStyle from "./getNotifyStyle";
 import {NotifyItem} from "./../styles";
+//@ts-ignore
 import {ReactComponent as CloseInfo} from '../images/ic_close_info.svg';
 import {Content} from './styles';
 
 export const WarningNotify: React.FC<BaseNotifyProps> = ({
                                                              id,
-                                                             text,
-                                                             onClick,
-                                                             needRemove,
+                                                             text = '',
+                                                             onClick = () => {},
+                                                             needRemove = false,
                                                          }) => {
     const rendered = useRendered();
     const style = getNotifyStyle(rendered, needRemove);

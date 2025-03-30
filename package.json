@@ -1,7 +1,7 @@
 {
   "name": "notify-component",
   "productName": "notify-component",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "description": "notify-component",
   "main": "dist/index.js",
   "keywords": [],
@@ -10,12 +10,12 @@
     "email": "olegstan1@gmail.com"
   },
   "scripts": {
-    "build:map": "babel src -d dist  --source-maps && copyfiles -u 1 src/images/* dist/",
-    "build": "babel src -d dist --extensions \".ts,.tsx,.js,.jsx\" && copyfiles -u 1 src/images/* dist/"
+    "build": "npm run build:types && npm run build:js && npm run copy:assets",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "babel src -d dist --extensions \".ts,.tsx,.js,.jsx\"",
+    "copy:assets": "copyfiles -u 1 src/images/* dist/"
   },
   "license": "MIT",
-  "dependencies": {
-  },
   "peerDependencies": {
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.0.0",
@@ -27,6 +27,8 @@
     "@babel/plugin-proposal-decorators": "^7.25.9",
     "@babel/plugin-transform-modules-commonjs": "^7.26.3",
     "@babel/preset-typescript": "^7.26.0",
+    "@types/react": "^19.0.12",
+    "@types/react-dom": "^19.0.4",
     "babel-plugin-react-html-attrs": "^3.0.5"
   },
   "browserslist": [

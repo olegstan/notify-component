@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "lib": ["es2015", "dom"], // Добавлено: поддержка современных типов (включая Iterable)
+    "skipLibCheck": true,     // Добавлено: игнорирование ошибок в сторонних библиотеках
+    "target": "es6",
+    "allowJs": true,
+
+    // Добавьте эти параметры:
+    "declaration": true, // Выходная директория для .d.ts файлов
+    "composite": true // Опционально: помогает при работе с проектами TypeScript
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

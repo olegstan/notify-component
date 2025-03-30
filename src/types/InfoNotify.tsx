@@ -4,6 +4,7 @@ import BaseNotifyProps from "./BaseNotifyProps";
 import useRendered from "./hooks/useRendered";
 import getNotifyStyle from "./getNotifyStyle";
 import {NotifyItem} from "./../styles";
+//@ts-ignore
 import {ReactComponent as CloseInfo} from '../images/ic_close_info.svg';
 import {Content} from './styles';
 

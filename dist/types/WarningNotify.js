@@ -13,12 +13,14 @@ var _ic_close_info = require("../images/ic_close_info.svg");
 var _styles2 = require("./styles");
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+//@ts-ignore
+
 const WarningNotify = _ref => {
   let {
     id,
-    text,
-    onClick,
-    needRemove
+    text = '',
+    onClick = () => {},
+    needRemove = false
   } = _ref;
   const rendered = (0, _useRendered.default)();
   const style = (0, _getNotifyStyle.default)(rendered, needRemove);

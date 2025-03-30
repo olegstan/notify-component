@@ -24,6 +24,7 @@ const NotifyContainer: React.FC<NotifyContainerProps> = () => {
     setChildrenMap((prev) => {
       const newChildren = { ...prev };
       if (newChildren[id]) {
+        //@ts-ignore
         newChildren[id] = React.cloneElement(newChildren[id], { needRemove: true });
       }
       return newChildren;
@@ -43,6 +44,7 @@ const NotifyContainer: React.FC<NotifyContainerProps> = () => {
   const updateItem: ContainerInterface['updateItem'] = useCallback((id, percent) => {
     setChildrenMap((prev) => {
       if (prev[id]) {
+        //@ts-ignore
         return { ...prev, [id]: React.cloneElement(prev[id], { percent }) };
       }
       return prev;
@@ -51,7 +53,7 @@ const NotifyContainer: React.FC<NotifyContainerProps> = () => {
 
   // Метод для проверки наличия уведомления
   const hasItem: ContainerInterface['hasItem'] = useCallback(
-      (id): boolean => {
+      (id: any): boolean => {
         return !!childrenMap[id];
       },
       [childrenMap]
@@ -62,6 +64,7 @@ const NotifyContainer: React.FC<NotifyContainerProps> = () => {
     NotifyManager.bind({ addItem, removeItem, updateItem, hasItem });
   }, [addItem, removeItem, updateItem, hasItem]);
 
+  //@ts-ignore
   const notifies = Object.values(childrenMap);
 
   if (notifies.length === 0) {
@@ -70,7 +73,7 @@ const NotifyContainer: React.FC<NotifyContainerProps> = () => {
 
   return (
       <Portal id="notify">
-        {notifies.map((item) => {
+        {notifies.map((item: any) => {
           if (item?.props?.id) {
             return <Fragment key={item.props.id}>{item}</Fragment>;
           }
