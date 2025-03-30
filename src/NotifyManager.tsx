@@ -11,28 +11,12 @@ export type ContainerInterface = {
   hasItem?: (id: string) => boolean;
 };
 
-interface NotifyManagerInterface {
-  info: (title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
-  error: (title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
-  warning: (title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
-  loading: (title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
-
-  infoOnce: (id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
-  errorOnce: (id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
-  warningOnce: (id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
-  loadingOnce: (id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
-}
-
 const NotifyComponents: Record<string, React.ComponentType<any>> = {
   error: ErrorNotify,
   loading: LoadingNotify,
   info: InfoNotify,
   warning: WarningNotify,
 };
-
-
-// Объявление слияния интерфейсов: расширяем класс NotifyManager
-interface NotifyManager extends NotifyManagerInterface {}
 
 /**
  *
@@ -158,44 +142,92 @@ class NotifyManager {
   static bind(container: ContainerInterface) {
     this.container = container;
   }
-}
 
-/**
- * @typedef {Object} NotifyManager
- * @property {(title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} info - Метод для добавления информационного уведомления.
- * @property {(title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} error - Метод для добавления уведомления об ошибке.
- * @property {(title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} warning - Метод для добавления предупреждающего уведомления.
- * @property {(title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} loading - Метод для добавления уведомления загрузки.
- * @property {(id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} infoOnce - Метод для добавления однократного информационного уведомления.
- * @property {(id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} errorOnce - Метод для добавления однократного уведомления об ошибке.
- * @property {(id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} warningOnce - Метод для добавления однократного предупреждающего уведомления.
- * @property {(id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} loadingOnce - Метод для добавления однократного уведомления загрузки.
- */
+  // Явное объявление методов для добавления уведомлений
+  static info(
+      title: string,
+      text: string,
+      time: number = 4000,
+      onClick?: () => void,
+      onClose?: () => void
+  ): string | undefined {
+    return NotifyManager.add(title, text, 'info', time, onClick, onClose);
+  }
 
-// Динамическое создание методов для типов уведомлений
-['info', 'error', 'warning', 'loading'].forEach((type) => {
-  //@ts-ignore
-  NotifyManager[`${type}Once`] = (
+  static error(
+      title: string,
+      text: string,
+      time: number = 4000,
+      onClick?: () => void,
+      onClose?: () => void
+  ): string | undefined {
+    return NotifyManager.add(title, text, 'error', time, onClick, onClose);
+  }
+
+  static warning(
+      title: string,
+      text: string,
+      time: number = 4000,
+      onClick?: () => void,
+      onClose?: () => void
+  ): string | undefined {
+    return NotifyManager.add(title, text, 'warning', time, onClick, onClose);
+  }
+
+  static loading(
+      title: string,
+      text: string,
+      time: number = 999999999,
+      onClick?: () => void,
+      onClose?: () => void
+  ): string | undefined {
+    return NotifyManager.add(title, text, 'loading', time, onClick, onClose);
+  }
+
+  // Явное объявление методов для однократных уведомлений
+  static infoOnce(
       id: string,
       title: string,
       text: string,
-      time: number = type === 'loading' ? 999999999 : 4000,
+      time: number = 4000,
       onClick?: () => void,
       onClose?: () => void
-  ): string | undefined => {
-    return NotifyManager.once(id, title, text, type, time, onClick, onClose);
-  };
+  ): string | undefined {
+    return NotifyManager.once(id, title, text, 'info', time, onClick, onClose);
+  }
 
-  //@ts-ignore
-  NotifyManager[type] = (
+  static errorOnce(
+      id: string,
       title: string,
       text: string,
-      time: number = type === 'loading' ? 999999999 : 4000,
+      time: number = 4000,
       onClick?: () => void,
       onClose?: () => void
-  ): string | undefined => {
-    return NotifyManager.add(title, text, type, time, onClick, onClose);
-  };
-});
+  ): string | undefined {
+    return NotifyManager.once(id, title, text, 'error', time, onClick, onClose);
+  }
+
+  static warningOnce(
+      id: string,
+      title: string,
+      text: string,
+      time: number = 4000,
+      onClick?: () => void,
+      onClose?: () => void
+  ): string | undefined {
+    return NotifyManager.once(id, title, text, 'warning', time, onClick, onClose);
+  }
+
+  static loadingOnce(
+      id: string,
+      title: string,
+      text: string,
+      time: number = 999999999,
+      onClick?: () => void,
+      onClose?: () => void
+  ): string | undefined {
+    return NotifyManager.once(id, title, text, 'loading', time, onClick, onClose);
+  }
+}
 
 export default NotifyManager

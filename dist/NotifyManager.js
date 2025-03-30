@@ -21,8 +21,6 @@ const NotifyComponents = {
   warning: _WarningNotify.WarningNotify
 };
 
-// Объявление слияния интерфейсов: расширяем класс NotifyManager
-
 /**
  *
  */
@@ -102,37 +100,58 @@ class NotifyManager {
   static bind(container) {
     this.container = container;
   }
-}
 
-/**
- * @typedef {Object} NotifyManager
- * @property {(title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} info - Метод для добавления информационного уведомления.
- * @property {(title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} error - Метод для добавления уведомления об ошибке.
- * @property {(title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} warning - Метод для добавления предупреждающего уведомления.
- * @property {(title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} loading - Метод для добавления уведомления загрузки.
- * @property {(id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} infoOnce - Метод для добавления однократного информационного уведомления.
- * @property {(id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} errorOnce - Метод для добавления однократного уведомления об ошибке.
- * @property {(id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} warningOnce - Метод для добавления однократного предупреждающего уведомления.
- * @property {(id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined} loadingOnce - Метод для добавления однократного уведомления загрузки.
- */
-
-// Динамическое создание методов для типов уведомлений
-_defineProperty(NotifyManager, "container", null);
-['info', 'error', 'warning', 'loading'].forEach(type => {
-  //@ts-ignore
-  NotifyManager["".concat(type, "Once")] = function (id, title, text) {
-    let time = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : type === 'loading' ? 999999999 : 4000;
-    let onClick = arguments.length > 4 ? arguments[4] : undefined;
-    let onClose = arguments.length > 5 ? arguments[5] : undefined;
-    return NotifyManager.once(id, title, text, type, time, onClick, onClose);
-  };
-
-  //@ts-ignore
-  NotifyManager[type] = function (title, text) {
-    let time = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : type === 'loading' ? 999999999 : 4000;
+  // Явное объявление методов для добавления уведомлений
+  static info(title, text) {
+    let time = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 4000;
     let onClick = arguments.length > 3 ? arguments[3] : undefined;
     let onClose = arguments.length > 4 ? arguments[4] : undefined;
-    return NotifyManager.add(title, text, type, time, onClick, onClose);
-  };
-});
+    return NotifyManager.add(title, text, 'info', time, onClick, onClose);
+  }
+  static error(title, text) {
+    let time = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 4000;
+    let onClick = arguments.length > 3 ? arguments[3] : undefined;
+    let onClose = arguments.length > 4 ? arguments[4] : undefined;
+    return NotifyManager.add(title, text, 'error', time, onClick, onClose);
+  }
+  static warning(title, text) {
+    let time = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 4000;
+    let onClick = arguments.length > 3 ? arguments[3] : undefined;
+    let onClose = arguments.length > 4 ? arguments[4] : undefined;
+    return NotifyManager.add(title, text, 'warning', time, onClick, onClose);
+  }
+  static loading(title, text) {
+    let time = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 999999999;
+    let onClick = arguments.length > 3 ? arguments[3] : undefined;
+    let onClose = arguments.length > 4 ? arguments[4] : undefined;
+    return NotifyManager.add(title, text, 'loading', time, onClick, onClose);
+  }
+
+  // Явное объявление методов для однократных уведомлений
+  static infoOnce(id, title, text) {
+    let time = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 4000;
+    let onClick = arguments.length > 4 ? arguments[4] : undefined;
+    let onClose = arguments.length > 5 ? arguments[5] : undefined;
+    return NotifyManager.once(id, title, text, 'info', time, onClick, onClose);
+  }
+  static errorOnce(id, title, text) {
+    let time = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 4000;
+    let onClick = arguments.length > 4 ? arguments[4] : undefined;
+    let onClose = arguments.length > 5 ? arguments[5] : undefined;
+    return NotifyManager.once(id, title, text, 'error', time, onClick, onClose);
+  }
+  static warningOnce(id, title, text) {
+    let time = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 4000;
+    let onClick = arguments.length > 4 ? arguments[4] : undefined;
+    let onClose = arguments.length > 5 ? arguments[5] : undefined;
+    return NotifyManager.once(id, title, text, 'warning', time, onClick, onClose);
+  }
+  static loadingOnce(id, title, text) {
+    let time = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 999999999;
+    let onClick = arguments.length > 4 ? arguments[4] : undefined;
+    let onClose = arguments.length > 5 ? arguments[5] : undefined;
+    return NotifyManager.once(id, title, text, 'loading', time, onClick, onClose);
+  }
+}
+_defineProperty(NotifyManager, "container", null);
 var _default = exports.default = NotifyManager;

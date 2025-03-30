@@ -5,18 +5,6 @@ export type ContainerInterface = {
     updateItem: (id: string, percent: number) => void;
     hasItem?: (id: string) => boolean;
 };
-interface NotifyManagerInterface {
-    info: (title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
-    error: (title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
-    warning: (title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
-    loading: (title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
-    infoOnce: (id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
-    errorOnce: (id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
-    warningOnce: (id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
-    loadingOnce: (id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void) => string | undefined;
-}
-interface NotifyManager extends NotifyManagerInterface {
-}
 /**
  *
  */
@@ -32,6 +20,14 @@ declare class NotifyManager {
     static delete(jobTypeId: string): void;
     static update(jobTypeId: string, percent: number): void;
     static bind(container: ContainerInterface): void;
+    static info(title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void): string | undefined;
+    static error(title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void): string | undefined;
+    static warning(title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void): string | undefined;
+    static loading(title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void): string | undefined;
+    static infoOnce(id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void): string | undefined;
+    static errorOnce(id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void): string | undefined;
+    static warningOnce(id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void): string | undefined;
+    static loadingOnce(id: string, title: string, text: string, time?: number, onClick?: () => void, onClose?: () => void): string | undefined;
 }
 export default NotifyManager;
 //# sourceMappingURL=NotifyManager.d.ts.map
