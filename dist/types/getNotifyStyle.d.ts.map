@@ -1,1 +1,1 @@
-{"version":3,"file":"getNotifyStyle.d.ts","sourceRoot":"","sources":["../../src/types/getNotifyStyle.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,OAAO,CAAC;AAE1B,QAAA,MAAM,cAAc,aAAc,OAAO,eAAe,OAAO,KAAG,MAAM,aAKvE,CAAC;AAEF,eAAe,cAAc,CAAC"}
+{"version":3,"file":"getNotifyStyle.d.ts","sourceRoot":"","sources":["../../src/types/getNotifyStyle.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,OAAO,CAAC;AAE1B,QAAA,MAAM,cAAc,GAAI,UAAU,OAAO,EAAE,aAAa,OAAO,KAAG,KAAK,CAAC,aAKvE,CAAC;AAEF,eAAe,cAAc,CAAC"}
