@@ -5,7 +5,7 @@ import useRendered from "./hooks/useRendered";
 import getNotifyStyle from "./getNotifyStyle";
 import {NotifyItem} from "./../styles";
 // @ts-ignore
-import {ReactComponent as CloseInfo} from '../images/ic_close_info.svg';
+import closeErrorIcon from '../images/ic_close_error.svg';
 // @ts-ignore
 import loader from '../images/loader.svg';
 import {Content, Preload} from './styles';
@@ -31,7 +31,7 @@ export const LoadingNotify: React.FC<LoadingNotifyProps> = ({
             </Preload>
             <Content>
                 <img className="load" src={loader} alt="" />
-                <CloseInfo className="close" onClick={() => NotifyManager.delete(id)} />
+                <img src={closeErrorIcon} className="close" alt="Close" onClick={() => NotifyManager.delete(id)} />
                 <div className="text">{text}</div>
             </Content>
         </NotifyItem>

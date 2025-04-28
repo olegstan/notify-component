@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import React, {Fragment, useCallback, useEffect, useState} from 'react';
 import NotifyManager, {ContainerInterface} from './NotifyManager';
 import Portal from './Portal';
 

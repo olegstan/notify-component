@@ -9,7 +9,7 @@ var _NotifyManager = _interopRequireDefault(require("../NotifyManager"));
 var _useRendered = _interopRequireDefault(require("./hooks/useRendered"));
 var _getNotifyStyle = _interopRequireDefault(require("./getNotifyStyle"));
 var _styles = require("./../styles");
-var _ic_close_info = require("../images/ic_close_info.svg");
+var _ic_close_error = _interopRequireDefault(require("../images/ic_close_error.svg"));
 var _loader = _interopRequireDefault(require("../images/loader.svg"));
 var _styles2 = require("./styles");
 var _jsxRuntime = require("react/jsx-runtime");
@@ -42,8 +42,10 @@ const LoadingNotify = _ref => {
         className: "load",
         src: _loader.default,
         alt: ""
-      }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_ic_close_info.ReactComponent, {
+      }), /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
+        src: _ic_close_error.default,
         className: "close",
+        alt: "Close",
         onClick: () => _NotifyManager.default.delete(id)
       }), /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
         className: "text",

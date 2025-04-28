@@ -1,8 +1,8 @@
 import React from 'react';
-import { ErrorNotify } from "./types/ErrorNotify";
-import { LoadingNotify } from "./types/LoadingNotify";
-import { InfoNotify } from "./types/InfoNotify";
-import { WarningNotify } from "./types/WarningNotify";
+import {ErrorNotify} from "./types/ErrorNotify";
+import {LoadingNotify} from "./types/LoadingNotify";
+import {InfoNotify} from "./types/InfoNotify";
+import {WarningNotify} from "./types/WarningNotify";
 
 export type ContainerInterface = {
   addItem: (id: string, notify: React.ReactElement) => void;

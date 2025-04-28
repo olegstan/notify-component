@@ -5,7 +5,7 @@ import useRendered from "./hooks/useRendered";
 import getNotifyStyle from "./getNotifyStyle";
 import {NotifyItem} from "./../styles";
 // @ts-ignore
-import {ReactComponent as CloseError} from '../images/ic_close_error.svg';
+import closeErrorIcon from '../images/ic_close_error.svg';
 import {Content} from './styles';
 
 export const ErrorNotify: React.FC<BaseNotifyProps> = ({
@@ -27,7 +27,7 @@ export const ErrorNotify: React.FC<BaseNotifyProps> = ({
         }} onClick={onClick}>
             <Content>
                 <div className="text">{text}</div>
-                <CloseError className="close" onClick={() => NotifyManager.delete(id)} />
+                <img src={closeErrorIcon} className="close" alt="Close" onClick={() => NotifyManager.delete(id)} />
             </Content>
         </NotifyItem>
     );
