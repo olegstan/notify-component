@@ -32,6 +32,7 @@ const ErrorNotify = _ref => {
         color: '#fff'
       }
     },
+    className: "notify-error",
     onClick: onClick,
     children: /*#__PURE__*/(0, _jsxRuntime.jsxs)(_styles2.Content, {
       children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("div", {

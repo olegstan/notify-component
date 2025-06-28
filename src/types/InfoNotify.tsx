@@ -18,7 +18,7 @@ export const InfoNotify: React.FC<BaseNotifyProps> = ({
     const style = getNotifyStyle(rendered, needRemove);
 
     return (
-        <NotifyItem style={style} onClick={onClick}>
+        <NotifyItem className='info' style={style} onClick={onClick}>
             <Content>
                 <img src={closeErrorIcon} className="close" alt="Close" onClick={() => NotifyManager.delete(id)} />
                 <div className="text">{text}</div>

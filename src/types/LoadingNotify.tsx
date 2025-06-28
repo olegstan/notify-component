@@ -25,7 +25,7 @@ export const LoadingNotify: React.FC<LoadingNotifyProps> = ({
     const style = getNotifyStyle(rendered, needRemove);
 
     return (
-        <NotifyItem style={style} onClick={onClick}>
+        <NotifyItem className='notify-loading' style={style} onClick={onClick}>
             <Preload>
                 <div style={{ width: percent && percent > 0 ? `${percent}%` : '0%' }} />
             </Preload>

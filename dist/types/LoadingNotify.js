@@ -29,6 +29,7 @@ const LoadingNotify = _ref => {
   const rendered = (0, _useRendered.default)();
   const style = (0, _getNotifyStyle.default)(rendered, needRemove);
   return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_styles.NotifyItem, {
+    className: "notify-loading",
     style: style,
     onClick: onClick,
     children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_styles2.Preload, {

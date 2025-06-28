@@ -19,6 +19,7 @@ export const WarningNotify: React.FC<BaseNotifyProps> = ({
 
     return (
         <NotifyItem
+            className='notify-warning'
             style={style}
             onClick={onClick}
         >

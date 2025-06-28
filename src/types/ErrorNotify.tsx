@@ -24,7 +24,7 @@ export const ErrorNotify: React.FC<BaseNotifyProps> = ({
                 backgroundColor: '#EF5E70',
                 color: '#fff'
             }
-        }} onClick={onClick}>
+        }} className='notify-error' onClick={onClick}>
             <Content>
                 <div className="text">{text}</div>
                 <img src={closeErrorIcon} className="close" alt="Close" onClick={() => NotifyManager.delete(id)} />
